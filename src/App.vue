@@ -1,6 +1,7 @@
 <template>
- <div  v-bind:id="typeof weather.main!= 'undefined' && weather.main.temp >20 ? 'app-warm' : 'app'">
-          <main>
+<!-- <div  v-bind:id="typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`n`) ? 'app-warm' : 'snow'">  --> 
+      <div v-bind:id="typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`n`) ?'app-warm':typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`01d`,`02d`)?'clear-sky':typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`09d`,`10d`,`11d`)?'rain':'snow'">
+           <main>
             
             <div class="search-box">
               <div class= "m">
@@ -20,6 +21,7 @@
               <div class="weather-box">
                 <div class="temp">{{Math.round(weather.main.temp)}}°c </div>
                 <div class="weather">{{weather.weather[0].main}}</div>
+                
               </div>
             </div>
           </main>
@@ -27,8 +29,6 @@
 </template>
 
 <script>
-
-
 export default {
   name: 'App',
   components: {
@@ -40,8 +40,8 @@ export default {
           url_base:'https://api.openweathermap.org/data/2.5/',
           query:'',
           weather:{
-
           }
+          
     } 
   },
   methods:{
@@ -55,7 +55,10 @@ export default {
      },
      setResults(results){
        this.weather=results;
+       
+              
      },
+
      dateBuilder(){
        let d= new Date();
        let months = ["January", "February", "March", "April", "May","June", "July", "August", "September", "October", "November", "December" ];
@@ -64,11 +67,9 @@ export default {
        let date= d.getDate();
        let month= months[d.getMonth()];
        let year= d.getFullYear();
-
        return `${day} ${date} ${month} ${year}`;
      }
   }
-
 }
 </script>
 
@@ -80,17 +81,29 @@ export default {
   body{
     font-family: 'montserrat',sans-serif;
  }
-  #app{
-    background-image: url('./assets/cold-bg1.jpg');
+  #rain{
+    background-image: url('./assets/rain.png');
     background-size: fill;
     background-position: bottom;
-    transition: 0.4s;
+    transition: 0.1s;
+  }
+  #clear-sky{
+    background-image: url('./assets/clear-sky.jpg');
+    background-size: fill;
+    background-position: bottom;
+    transition: 0.1s;
+  }
+  #snow{
+    background-image: url('./assets/snow.jpg');
+    background-size: fill;
+    background-position: bottom;
+    transition: 0.1s;
   }
   #app-warm{
     background-image: url('./assets/warm-bg.jpg');
     background-size: cover;
     background-position: bottom;
-    transition: 0.2s;
+    transition: 0.1s;
   }
   main{
     min-height: 100vh;
@@ -111,14 +124,11 @@ export default {
     display: block;
     width: 100%;
     padding: 15px;
-
     color: #313131;
     font-size: 20px;
-
     border:none;
     appearance: none;
     outline: none;
-
     box-shadow: 0px 0px 8px rgba(0,0,0,0.25);
     background-color: rgba(255,255,255,0.5);
     border-radius: 0px 16px 0px 16px;
@@ -128,7 +138,6 @@ export default {
     box-shadow: rgba(0,0,0,0.25);
     background-color: rgba(255,255,255,0.75);
     border-radius: 16px 0px 16px 0px;
-
   }
   .location-box .location{
     color:#FFFF;
@@ -136,7 +145,6 @@ export default {
     font-weight:500;
     text-align:center;
     text-shadow: 1px 3px rgba(0,0,0,0.25);
-
   }
   .location-box .date{
     color:#FFFF;
@@ -157,14 +165,11 @@ export default {
     text-align: center;
     font-size: 102px;
     font-weight:  900;
-
     text-shadow: 3px 6px rgba(0,0,0,0.25);
     background-color: rgba(255,255,255,0.25);
     border-radius: 16px;
     margin: 30px 0px;
-
     box-shadow: 10px 10px 8px rgba(0,0,0,0.25);
-
   }
   .weather-box .weather{
     font-size: 48px;
@@ -172,6 +177,5 @@ export default {
     font-weight: 700;
     font-style:italic;
     text-shadow: 3px 6px rgba(0,0,0,0.25);
-
   }
 </style>
