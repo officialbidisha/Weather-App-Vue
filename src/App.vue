@@ -1,6 +1,6 @@
 <template>
 <!-- <div  v-bind:id="typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`n`) ? 'app-warm' : 'snow'">  --> 
-      <div v-bind:id="typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`n`) ?'app-warm':typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`01d`,`02d`)?'clear-sky':typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`09d`,`10d`,`11d`)?'rain':'snow'">
+      <div v-bind:id="typeof weather.weather!= 'undefined' && weather.weather[0].icon.includes(`n`) ?'app-warm':typeof weather.weather!= 'undefined' && (weather.weather[0].icon==`01d` || weather.weather[0].icon==`02d`)?'clear-sky':typeof weather.weather!= 'undefined' && (weather.weather[0].icon==`10d`|| weather.weather[0].icon==`11d`|| weather.weather[0].icon==`09d`) ?'rain': typeof weather.weather!= 'undefined' && (weather.weather[0].icon==`03d` || weather.weather[0].icon==`04d`)?'cloudy':'snow'">
            <main>
             
             <div class="search-box">
@@ -21,7 +21,7 @@
               <div class="weather-box">
                 <div class="temp">{{Math.round(weather.main.temp)}}°c </div>
                 <div class="weather">{{weather.weather[0].main}}</div>
-                
+                <!-- <div class="p">{{weather.weather[0].icon}}</div> -->
               </div>
             </div>
           </main>
@@ -85,25 +85,31 @@ export default {
     background-image: url('./assets/rain.png');
     background-size: fill;
     background-position: bottom;
-    transition: 0.1s;
+    transition: 0.4s;
   }
   #clear-sky{
     background-image: url('./assets/clear-sky.jpg');
     background-size: fill;
     background-position: bottom;
-    transition: 0.1s;
+    transition: 0.4s;
   }
   #snow{
     background-image: url('./assets/snow.jpg');
     background-size: fill;
     background-position: bottom;
-    transition: 0.1s;
+    transition: 0.4s;
   }
   #app-warm{
-    background-image: url('./assets/warm-bg.jpg');
+    background-image: url('./assets/warm-bg.png');
     background-size: cover;
     background-position: bottom;
-    transition: 0.1s;
+    transition: 0.4s;
+  }
+  #cloudy{
+    background-image: url('./assets/cloudy.jpg');
+    background-size: cover;
+    background-position: bottom;
+    transition: 0.4s;
   }
   main{
     min-height: 100vh;
