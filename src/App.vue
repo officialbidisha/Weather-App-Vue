@@ -1,11 +1,15 @@
 <template>
  <div  v-bind:id="typeof weather.main!= 'undefined' && weather.main.temp >20 ? 'app-warm' : 'app'">
           <main>
+            
             <div class="search-box">
+              <div class= "m">
                <input type="text" class="search-bar" placeholder="Search.."
                v-model="query" @keypress="fetchweather" />
+              </div>
                      
             </div>
+           
             <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
               <div class="location-box">
                 <div class="location">
@@ -77,7 +81,7 @@ export default {
     font-family: 'montserrat',sans-serif;
  }
   #app{
-    background-image: url('./assets/cold-bg.jpg');
+    background-image: url('./assets/cold-bg1.jpg');
     background-size: fill;
     background-position: bottom;
     transition: 0.4s;
@@ -86,13 +90,19 @@ export default {
     background-image: url('./assets/warm-bg.jpg');
     background-size: cover;
     background-position: bottom;
-    transition: 0.4s;
+    transition: 0.2s;
   }
   main{
     min-height: 100vh;
     padding: 25px;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.75));
   }
+  
+    /* @media(max-width: 768px) 
+    { .search-bar { bottom:0px; padding-left:inherit; padding-right:inherit; left:0px;    }} */
+    .m{
+      position:relative;
+    }
   .search-box{
     width:100%;
     margin-bottom: 30px;
@@ -112,7 +122,7 @@ export default {
     box-shadow: 0px 0px 8px rgba(0,0,0,0.25);
     background-color: rgba(255,255,255,0.5);
     border-radius: 0px 16px 0px 16px;
-    transition:0.4s;
+    transition:0.2s;
   }
   .search-box .search-bar:focus{
     box-shadow: rgba(0,0,0,0.25);
