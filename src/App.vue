@@ -83,19 +83,19 @@ export default {
  }
   #rain{
     background-image: url('./assets/rain.png');
-    background-size: fill;
+    background-size: cover;
     background-position: bottom;
     transition: 0.4s;
   }
   #clear-sky{
     background-image: url('./assets/clear-sky.jpg');
-    background-size: fill;
+    background-size: cover;
     background-position: bottom;
     transition: 0.4s;
   }
   #snow{
     background-image: url('./assets/snow.jpg');
-    background-size: fill;
+    background-size: cover;
     background-position: bottom;
     transition: 0.4s;
   }
